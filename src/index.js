@@ -27,20 +27,27 @@ function submitHandler(e) {
   getWeather(cityInput);
 }
 
+const tempDiv = document.querySelector(".temp");
+
 function displayWeather(weather) {
   // const weatherContainer = document.querySelector(".weather");
 
   const cityNameDiv = document.querySelector(".city");
-  const tempDiv = document.querySelector(".temp");
+  const tempUnit = document.getElementById("temp-unit")
+  
   const skyDiv = document.querySelector(".sky");
 
   console.log(`wojtek${weather.current.temp_c}`);
   cityNameDiv.textContent = `${weather.location.name}`;
+  
   tempDiv.textContent = `${weather.current.temp_c}\u2103`;
+  if (tempUnit.checked) tempDiv.textContent = `${weather.current.temp_f}\u2109`;
+
   skyDiv.innerHTML = `<img src=http:${weather.current.condition.icon}><p>${weather.current.condition.text}</p>`;
 }
 
 form.addEventListener("submit", submitHandler);
+
 
 getWeather("Warsaw");
 // getWeather();

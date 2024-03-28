@@ -8,9 +8,13 @@ async function getWeather(city) {
       `https://api.weatherapi.com/v1/current.json?key=1037f513ffb64c10b92100001242603&q=${city}`,
       { mode: "cors" },
     );
-    const weatherApi = await response.json();
-    console.log(weatherApi);
-    displayWeather(weatherApi);
+    if (response.ok) {
+      const weatherApi = await response.json();
+      console.log(weatherApi);
+      displayWeather(weatherApi);
+    } else {
+      console.log(`Network error : ${response.status}`)
+    }
   } catch (err) {
     console.log(err);
   }

@@ -10,10 +10,9 @@ async function getWeather(city) {
     );
     if (response.ok) {
       const weatherApi = await response.json();
-      console.log(weatherApi);
       displayWeather(weatherApi);
     } else {
-      console.log(`Network error : ${response.status}`)
+      console.log(`Network error : ${response.status}`);
     }
   } catch (err) {
     console.log(err);
@@ -21,25 +20,22 @@ async function getWeather(city) {
 }
 
 function submitHandler(e) {
-  const cityInput = document.getElementById("city").value;
-
   e.preventDefault();
+  const cityInput = document.getElementById("city").value;
   getWeather(cityInput);
 }
 
 const tempDiv = document.querySelector(".temp");
 
 function displayWeather(weather) {
-  // const weatherContainer = document.querySelector(".weather");
 
   const cityNameDiv = document.querySelector(".city");
-  const tempUnit = document.getElementById("temp-unit")
-  
+  const tempUnit = document.getElementById("temp-unit");
+
   const skyDiv = document.querySelector(".sky");
 
-  console.log(`wojtek${weather.current.temp_c}`);
   cityNameDiv.textContent = `${weather.location.name}`;
-  
+
   tempDiv.textContent = `${weather.current.temp_c}\u2103`;
   if (tempUnit.checked) tempDiv.textContent = `${weather.current.temp_f}\u2109`;
 
@@ -48,6 +44,5 @@ function displayWeather(weather) {
 
 form.addEventListener("submit", submitHandler);
 
-
 getWeather("Warsaw");
-// getWeather();
+
